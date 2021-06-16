@@ -1,19 +1,164 @@
-{% extends "shop/base.html" %}
-{% load static %}
-{% block title %}
-    {% if category %}{{ category.title }}{% else %}Products{% endif %}
-{% endblock %}
-{% block content %}
-    <div class="product-detail">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-        <h1>{{ product.name }}</h1>
-        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
-        <p class="price">${{ product.price }}</p>
-        {{ product.description|linebreaks }}
-        <form action="{% url "cart:cart_add" product.id %}" method="post">
-        {{ cart_product_form }}
-        {% csrf_token %}
-        <input type="submit" value="Add to cart">
-         </form>
-    </div>
-{% endblock %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% include 'head/head.html' %}
+    <body>
+          <!-- Add your site or application content here -->
+            
+            <div class="exporso_wrapper">
+                {% include 'head/header.html' %}
+                
+                <!--Breadcrumb section-->
+                <div class="breadcrumb_section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="breadcrumb_inner">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><i class="zmdi zmdi-chevron-right"></i></li>
+                                        <li>{{ product.name }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Breadcrumb section end-->
+                
+                <!--product Details Inner-->
+                <div class="product_details_inner left_sidebar ptb-110">
+                    <div class="container">
+                        <div class="row">
+                            <!--Product Tab Style start-->
+                            <div class="col-md-12 col-lg-5 col-12">
+                                <div class="product-details-img-content">
+                                    <div class="product-details-tab">
+                                        <div id="img-1" class="zoomWrapper single-zoom">
+                                            <a href="#">
+                                                <img id="zoom1" src="{% if product.image %}{{ product.image.url }}{% endif %}" {#  data-zoom-image="assets/img/product/pro_details/z-1.jpg" alt="big-1"#}>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Product Tab Style End-->
+                            <div class="col-md-12 col-lg-7 col-12">
+                                    <div class="product-details-content">
+                                        <h3>{{ product.name }}</h3>
+                                        <div class="rating-number">
+                                            <div class="product_rating">
+                                            </div>
+{#                                            <div class="review_count">#}
+{#                                                <span>2 Ratting (S)</span>#}
+{#                                            </div>#}
+                                        </div>
+                                        <div class="price_amount">
+                                            <span class="current_price">${{ product.price }}</span>
+                                            {# <span class="discount_price">-15%</span> <span class="old_price">$3700.00</span>#}
+                                        </div>
+                                        <p>Артикул: {{ product.articul }}</p>
+                                        </div>
+                                        <div class="single_product_action d-flex align-items-center" style="padding-left: 35px;">
+{#                                            <div class="cart-plus-minus">#}
+{#                                                <input type="text" value="1" name="qtybutton" class="cart-plus-minus-box">#}
+{#                                            </div>#}
+                                            <form action="{% url "cart:cart_add" product.id %}" method="post" >
+                                                {{ cart_product_form }}
+                                                {% csrf_token %}
+                                                <input  type="submit" value="Add to cart" >
+                                            </form>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- Product Thumbnail Description Start -->
+                        <div class="product_desc_tab_container mt-100 " style="padding-left: 35px">
+
+                            <div class="thumb-desc-inner">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <ul class="product_desc_tab nav" role="tablist">
+                                            <li><a class="active" data-toggle="tab" href="#dtail">Характеристики</a></li>
+                                        </ul>
+                                        <!-- Product Thumbnail Tab Content Start -->
+                                        <div class="tab-content thumb-content mt-30">
+                                            <div id="dtail" class="tab-pane fade show active">
+                                                <table class="table">
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Производитель</td>
+                                                      <td>{{ product.brand }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>Применение</td>
+                                                      <td>{{ product.applicability }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>Аналоги</td>
+                                                      <td>{{ product.analog }}</td>
+                                                    </tr>
+                                                      <tr>
+                                                      <td>Вес</td>
+                                                      <td>{{ product.filter_weight }}</td>
+                                                    </tr>
+                                                      <tr>
+                                                      <td>Объем</td>
+                                                      <td>{{ product.filter_volume }}</td>
+                                                    </tr>
+                                                      <tr>
+                                                      <td>Размер</td>
+                                                      <td>{{ product.filter_size }}</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                            </div>
+                                                                                            <!-- Reviews End -->
+
+                                                <!-- Reviews End -->
+                                            </div>
+                                        </div>
+                                        <!-- Product Thumbnail Tab Content End -->
+                                    </div>
+                                </div>
+                                <!-- Row End -->
+                            </div>
+                        </div>
+                         <!--Realted Product section start-->
+
+                    </div>
+                </div>
+                <!--product Details End-->
+                
+                
+               
+                
+
+
+                <!--Newsletter section end -->
+                
+                <!--Footer start-->
+             {% include 'footer/footer.html' %}
+                <!--Footer end-->
+               
+               
+                
+            </div>
+            
+            
+           
+        <!-- all js here -->
+        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
+
+
+
+

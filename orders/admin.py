@@ -12,6 +12,7 @@ class OrderAdmin(admin.ModelAdmin):
                     'address', 'postal_code', 'city', 'paid',
                     'created', 'updated']
     list_filter = ['paid', 'created', 'updated']
+    list_display_links = ('first_name', 'last_name',)
     inlines = [OrderItemInline]
 
 admin.site.register(Order, OrderAdmin)

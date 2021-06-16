@@ -1,55 +1,107 @@
-{% extends "shop/base.html" %}
 {% load static %}
-{% block title %}
-    Your shopping cart
-{% endblock %}
-{% block content %}
-    <h1>Your shopping cart</h1>
-    <table class="cart">
-        <thead>
-        <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-            <th>Unit price</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in cart %}
-            {% with product=item.product %}
-                <tr>
-                    <td>
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="
-                                {% if product.image %}
-                                    {{ product.image.url }}
-                                {% else %}
-                                    {% static "img/no_image.png" %}
-                                {% endif %}">
-                        </a>
-                    </td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td><a href="{% url "cart:cart_remove" product.id%}">Remove</a></td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
-                </tr>
-            {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <td>Total</td>
-            <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <p class="text-right">
-        <a href="{% url "shop:product_list" %}" class="button light">Continue shopping</a>
-        <a href="{% url "orders:order_create" %}" class="button">
-            Checkout
-        </a>
-    </p>
-    <p class="price">${{ product.price }}</p>
-{% endblock %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% include 'head/head.html' %}
+    <body>
+          <!-- Add your site or application content here -->
+            
+            <div class="exporso_wrapper">
+              {% include 'head/header.html' %}
+                
+
+
+                    <!-- PAGE SECTION START -->
+                    <div class="cart_page_area pt-100 pb-60">
+                       <form action="#">
+                            <div class="container">
+                                <div class="row">
+                                	<div class="col-12">
+                                        <div class="cart-table table-responsive mb-40">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th class="pro-thumbnail">Изображение</th>
+                                                        <th class="pro-title">Продукт</th>
+                                                        <th class="pro-price">Цена</th>
+                                                        <th class="pro-quantity">Количество</th>
+                                                        <th class="pro-subtotal">Общая цена</th>
+                                                        <th class="pro-remove">Удалить из корзины</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                 {% for item in cart %}
+                                                    {% with product=item.product %}
+                                                    <tr>
+                                                        <td class="pro-thumbnail"><a href="{{ product.get_absolute_url }}"><img src="{% if product.image %} {{ product.image.url }} {% endif %} "/></a></td>
+                                                        <td class="pro-title"><a href="#">{{ product.name }}</a></td>
+                                                        <td class="pro-price"><span class="amount">${{ item.price }}</span></td>
+                                                        <td class="pro-quantity"><div class="product-quantity"><input type="number" value="{{ item.quantity }}" /></div></td>
+                                                        <td class="pro-subtotal">${{ item.total_price }}</td>
+                                                        <td class="pro-remove"><a href="{% url "cart:cart_remove" product.id%}">×</a></td>
+                                                    </tr>
+                                                     {% endwith %}
+                                                 {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-12">
+                                        <div class="cart-buttons mb-30">
+                                            <input type="submit" value="Update Cart" />
+                                            <a href="{% url "shop:product_list" %}">Продолжить покупки</a>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="cart-total mb-40">
+                                            <h3>ИТОГИ ПО КОРЗИНЕ</h3>
+                                            <div class="table-responsive">
+                                                <table>
+                                                    <tbody>
+                                                        <tr class="cart-subtotal">
+                                                            <th>СУММА</th>
+                                                            <td><span class="amount">${{ cart.get_total_price }}</span></td>
+                                                        </tr>
+                                                        <tr class="order-total">
+                                                            <th>ИТОГОВАЯ СТОИМОСТЬ</th>
+                                                            <td>
+                                                                <strong><span class="amount">${{ cart.get_total_price }}</span></strong>
+                                                            </td>
+                                                        </tr>											
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            
+                                            <div class="proceed-to-checkout section mt-30">
+                                                <a href="{% url "orders:order_create" %}">Перейти к оформлению заказа</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </form>	
+                    </div>
+                    <!-- PAGE SECTION END --> 
+                
+
+                
+                <!--Footer start-->
+                {% include 'footer/footer.html' %}
+                <!--Footer end-->
+               
+               
+                
+            </div>
+            
+            
+           
+        <!-- all js here -->
+        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>

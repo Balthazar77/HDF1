@@ -1,0 +1,140 @@
+{% block header %}
+                <header>
+                    <div class="header_middle">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-3 col-md-3">
+                                    <div class="logo">
+                                        <a href="index.html"><img src="/static/img/logo/logo.png" alt="exporso logo"></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-8">
+                                    <div class="category_search">
+                                        <form action="#">
+                                            <div class="category_search_inner">
+                                                <div class="select">
+
+                                                    <select  name="categroy_search" >
+                                                        <option value="1" selected>All Categories</option>
+                                                    {% for c in categories %}
+                                                        <option {% if not category %}value="2" href="{{ c.get_absolute_url }}" >{{ c.name }}{% endif %}</option>
+                                                    {% endfor %}
+                                                    </select>
+
+                                                </div>
+                                                <div class="search">
+                                                    <input type="text" placeholder="Search Keyword Here">
+                                                </div>
+                                                <div class="submit">
+                                                    <button type="submit"><i class="zmdi zmdi-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-1">
+                                    <div class="mini_cart_box_wrapper text-right">
+                                        <a href="#">
+                                            <img src="/static/img/icon/cart.png" alt="Mini Cart Icon">
+                                            <span class="cart_count">02</span>
+                                        </a>
+                                        <ul class="mini_cart_box">
+                                            <li class="single_product_cart">
+                                                <div class="cart_img">
+                                                    <a href="product-details.html"><img src="/static/img/product/pro_sm_1.png" alt=""></a>
+                                                </div>
+                                                <div class="cart_title">
+                                                    <h5><a href="product-details.html"> Soffer Pro x33</a></h5>
+                                                    <h6><a href="#">Black</a></h6>
+                                                    <span>$95.00 x 1</span>
+                                                </div>
+                                                <div class="cart_delete">
+                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                                                </div>
+                                            </li>
+                                            <li class="single_product_cart">
+                                                <div class="cart_img">
+                                                    <a href="product-details.html"><img src="/static/img/product/pro_sm_2.png" alt=""></a>
+                                                </div>
+                                                <div class="cart_title">
+                                                    <h5><a href="product-details.html"> Lotafaj una khdii</a></h5>
+                                                    <h6><a href="#">Black</a></h6>
+                                                    <span>$85.00 x 1</span>
+                                                </div>
+                                                <div class="cart_delete">
+                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                                                </div>
+                                            </li>
+
+                                            <li class="cart_space">
+                                                <div class="cart_sub">
+                                                    <h4>Subtotal</h4>
+                                                </div>
+                                                <div class="cart_price">
+                                                    <h4>$180.00</h4>
+                                                </div>
+                                            </li>
+                                            <li class="cart_btn_wrapper">
+                                                <a class="cart_btn" href="../cart/cart.html">view cart</a>
+                                                <a class="cart_btn " href="checkout.html">checkout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header_bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 col-12">
+                                    <div class="menu d-none d-lg-block ">
+                                        <nav>
+                                            <ul>
+                                                <li><a href="{% url 'shop:product_list' %}">Главная</a>
+
+                                                </li>
+                                                <li><a href="about-us.html">О нас</a></li>
+                                                <li><a href="blog.html">Блог <i class="zmdi zmdi-chevron-down"></i></a>
+                                                    <ul class="sub_menu">
+                                                        <li><a href="blog.html">Blog</a></li>
+                                                        <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
+                                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="contact-us.html">Контакты </a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <div class="header_right_info">
+                                        <ul>
+                                            <li><a href="wishlist.html">Избранное<span> <i class="zmdi zmdi-favorite-outline"></i> (0) </span></a></li>
+                                            <li> <a href="login.html">Личный кабинет</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                <!--Breadcrumb section-->
+                <div class="breadcrumb_section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="breadcrumb_inner">
+                                    <ul>
+                                        <li><a href="#">Главная</a></li>
+                                        <li><i class="zmdi zmdi-chevron-right"></i></li>
+                                        <li>НУЖНО ПРОПИСАТЬ</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Breadcrumb section end-->
+
+                </header>
+{% endblock header %}

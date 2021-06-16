@@ -1,9 +1,37 @@
-{% extends "shop/base.html" %}
+{% load static %}
+{% include 'head/head.html' %}
+    <body>
+          <!-- Add your site or application content here -->
 
-{% block title %}Thank you{% endblock %}
+            <div class="exporso_wrapper">
+              {% include 'head/header.html' %}
+                <!--Breadcrumb section end-->
+                <!-- checkout-area start -->
+                <div class="checkout-area ptb-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <h1>Thank you</h1>
+                                    <p>Your order has been successfully completed. Your order number is
+                                        <strong>{{ order.id }}</strong>.</p>
+                <!--Newsletter section end -->
 
-{% block content %}
-    <h1>Thank you</h1>
-    <p>Your order has been successfully completed. Your order number is
-        <strong>{{ order.id }}</strong>.</p>
-{% endblock %}
+                <!--Footer start-->
+                {% include 'footer/footer.html' %}
+                <!--Footer end-->
+
+
+
+            </div>
+
+
+
+        <!-- all js here -->
+        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+
+    </body>
+</html>

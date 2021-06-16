@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from shop.models import Category, Product
+from shop.models import Category, Product, Brand
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -14,4 +14,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'stock', 'available']
     prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(Brand)
+class AdminBrand(admin.ModelAdmin):
+    list_display= ('id','name','slug')
+    prepopulated_fields = {'slug': ('name',)}
+    list_display_links = ('name',)
+
 admin.site.register(Product, ProductAdmin)

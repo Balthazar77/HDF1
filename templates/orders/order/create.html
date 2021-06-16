@@ -1,24 +1,197 @@
-{% extends "shop/base.html" %}
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% include 'head/head.html' %}
+    <body>
+          <!-- Add your site or application content here -->
+            
+            <div class="exporso_wrapper">
+              {% include 'head/header.html' %}
+                <!--Breadcrumb section end-->
 
-{% block title %}Checkout{% endblock %}
+                <!-- checkout-area start -->
+                <div class="checkout-area ptb-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="coupon-accordion">
+                                <!-- ACCORDION START -->
+                                <h3><span id="showlogin">Нажмите здесь, чтобы войти в систему</span></h3>
+                                <div id="checkout-login" class="coupon-content">
+                                    <div class="coupon-info">
+                                        <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>
+                                        <form action="#">
+                                            <p class="form-row-first">
+                                                <label>Username or email <span class="required">*</span></label>
+                                                <input type="text" />
+                                            </p>
+                                            <p class="form-row-last">
+                                                <label>Password  <span class="required">*</span></label>
+                                                <input type="text" />
+                                            </p>
+                                            <p class="form-row">					
+                                                <input type="submit" value="Login" />
+                                                <label>
+                                                    <input type="checkbox" />
+                                                     Remember me 
+                                                </label>
+                                            </p>
+                                            <p class="lost-password">
+                                                <a href="#">Lost your password?</a>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- ACCORDION END -->	
+                                <!-- ACCORDION START -->
+                                <h3>У вас есть купон? <span id="showcoupon">Нажмите здесь, чтобы ввести свой код</span></h3>
+                                <div id="checkout_coupon" class="coupon-checkout-content">
+                                    <div class="coupon-info">
+                                        <form action="#">
+                                            <p class="checkout-coupon">
+                                                <input type="text" placeholder="Coupon code" />
+                                                <input type="submit" value="Apply Coupon" />
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- ACCORDION END -->						
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-12">
+                            <div class="your-order">
+                                <h3>ВАШ ЗАКАЗ</h3>
+                                <div class="your-order-table table-responsive">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Продукт</th>
+                                                <th class="product-total">Цена</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <div class="order-info">
 
-{% block content %}
-    <h1>Checkout</h1>
-    <div class="order-info">
-        <h3>Your order</h3>
-        <ul>
-            {% for item in cart %}
-                <li>
-                    {{ item.quantity }}x {{ item.product.name }}
-                    <span>${{ item.total_price }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-        <p>Total: ${{ cart.get_total_price }}</p>
-    </div>
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Place order"></p>
-        {% csrf_token %}
-    </form>
-{% endblock %}
+
+                                                <tr class="cart_item">
+                                                        {% for item in cart %}
+
+                                                            <td class="product-name">
+                                                               <strong> {{ item.product.name }} ({{ item.quantity }}x)</strong>
+                                                            </td>
+                                                                <td class="product-total">
+                                                                <span>${{ item.total_price }}</span>
+                                                                </td>
+
+                                                            </li>
+                                                </tr>
+
+                                                     {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="cart-subtotal">
+                                                <th>ИТОГО В КОРЗИНЕ</th>
+                                                <td><span class="amount">£{{ cart.get_total_price }}</span></td>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th><strong> ИТОГОВАЯ СТОИМОСТЬ</strong></th>
+                                                <td><strong><span class="amount">£{{ cart.get_total_price }}</span></strong>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                                <div class="payment-method">
+                                    <div class="payment-accordion">
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true" data-parent="#faq" href="#payment-1">Банковский Перевод.</a></h5>
+                                                </div>
+                                                <div id="payment-1" class="panel-collapse collapse show">
+                                                    <div class="panel-body">
+                                                        <p>Произведите платеж непосредственно на свой банковский счет. Пожалуйста, используйте свой идентификатор заказа в качестве ссылки на оплату. Ваш заказ не будет отправлен до тех пор, пока средства не будут переведены на наш счет.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+{#                                            <div class="panel panel-default">#}
+{#                                                <div class="panel-heading">#}
+{#                                                    <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-2">Cheque Payment</a></h5>#}
+{#                                                </div>#}
+{#                                                <div id="payment-2" class="panel-collapse collapse">#}
+{#                                                    <div class="panel-body">#}
+{#                                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="panel panel-default">#}
+{#                                                <div class="panel-heading">#}
+{#                                                    <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">PayPal</a></h5>#}
+{#                                                </div>#}
+{#                                                <div id="payment-3" class="panel-collapse collapse">#}
+{#                                                    <div class="panel-body">#}
+{#                                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+                                        </div>
+                                        <div class="order-button-payment">
+{#                                            <form action="." method="post" class="order-form">#}
+{#                                            <p><input type="submit" value="Place order"></p>#}
+{#                                                {% csrf_token %}#}
+{#                                            </form>#}
+{#                                            <input type="submit" value="Разместить заказ" />#}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-12">
+                            <form action="#">
+                                <div class="checkbox-form">
+                                    <h3>Billing Details</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                                <form action="." method="post" class="order-form">
+                                                    <div class="checkout-form-list">
+                                                        {{ form.as_p }}
+                                                    </div>
+                                                    <p><input type="submit" value="Place order" style="border-radius: 50px;"></p>
+                                                    {% csrf_token %}
+                                                </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- checkout-area end -->	
+                <!--Newsletter section start-->
+
+                <!--Newsletter section end -->
+                
+                <!--Footer start-->
+                {% include 'footer/footer.html' %}
+                <!--Footer end-->
+               
+               
+                
+            </div>
+            
+            
+           
+        <!-- all js here -->
+        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
