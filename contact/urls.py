@@ -4,7 +4,7 @@ from contact.views import AboutUsView
 from organizations.views import Profile
 
 urlpatterns = [
-     url(r'^contact-us', AboutUsView.as_view(), name='contacts'),
+     url(r'^contact-us', AboutUsView.as_view(), name='about'),
 
 
 
