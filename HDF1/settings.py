@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth',
     'organizations',
     'allauth.account',
+    'contact',
 
 
 ]
