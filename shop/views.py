@@ -1,7 +1,25 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView
+
 from .models import Category, Product, Brand
 from cart.forms import CartAddProductForm
 
+
+class ProductListView(ListView):
+    """Запрос ко БД ко всем полям """
+    template_name = 'shop/base.html'
+    context_object_name = 'product'
+    model = Product
+
+    def get_queryset(self):
+        queryset = super(ProductListView, self).get_queryset()
+        return queryset.filter().all()[:10]
+
+    """Функция запроса к БД для дополнительного отбражение катагория"""
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
 
 def product_list(request, category_slug=None):
     category = None

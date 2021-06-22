@@ -1,0 +1,271 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    {% include 'head/head.html' %}
+    <body>
+          <!-- Add your site or application content here -->
+            
+            <div class="exporso_wrapper">
+             {% include 'head/header.html' %}
+                <!--Breadcrumb section-->
+                <!--Breadcrumb section end-->
+                
+                <!-- Start Maincontent  -->
+                <section class="main_content_area my_account ptb-100">
+                    <div class="container">
+                        <div class="account_dashboard">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <!-- Nav tabs -->
+                                    <div class="dashboard_tab_button">
+                                        <ul role="tablist" class="nav flex-column dashboard-list">
+                                            <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Управление личным кабинетом</a></li>
+                                            <li> <a href="#orders" data-toggle="tab" class="nav-link">Заказы</a></li>
+                                            <li><a href="#downloads" data-toggle="tab" class="nav-link">Загрузки</a></li>
+                                            <li><a href="#address" data-toggle="tab" class="nav-link">Адрес</a></li>
+                                            <li><a href="#account-details" data-toggle="tab" class="nav-link">Личные данные</a></li>
+                                            <li><a href="#organizations-details" data-toggle="tab" class="nav-link">Данные организации</a></li>
+                                            <li><a href="{% url 'login' %}" class="nav-link">Выход</a></li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                                <div class="col-sm-12 col-md-9 col-lg-9">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content dashboard_content">
+                                        <div class="tab-pane fade show active" id="dashboard">
+                                            <h3>Управление личным кабинетом </h3>
+                                            <p>С панели управления вашей учетной записью. вы можете легко проверять и просматривать свои <a href="">последние заказы</a>, управляйте своим <a href="#">адресами доставки и выставления счетов</a> и <a href="#">редактировать пароль и данные учетной записи. </a></p>
+                                        </div>
+                                        <div class="tab-pane fade" id="orders">
+                                            <h3>Заказы</h3>
+                                            <div class="lion_table_area table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Заказ</th>
+                                                            <th>Дата</th>
+                                                            <th>Статус</th>
+                                                            <th>Итого</th>
+                                                            <th>Actions</th>	 	 	 	
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>May 10, 2018</td>
+                                                            <td><span class="success">Completed</span></td>
+                                                            <td>$25.00 for 1 item </td>
+                                                            <td><a href="../cart/cart.html" class="view">view</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>May 10, 2018</td>
+                                                            <td>Processing</td>
+                                                            <td>$17.00 for 1 item </td>
+                                                            <td><a href="../cart/cart.html" class="view">view</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="downloads">
+                                            <h3>Downloads</h3>
+                                            <div class="lion_table_area table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Product</th>
+                                                            <th>Downloads</th>
+                                                            <th>Expires</th>
+                                                            <th>Download</th>	 	 	 	
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Shopnovilla - Free Real Estate PSD Template</td>
+                                                            <td>May 10, 2018</td>
+                                                            <td><span class="danger">Expired</span></td>
+                                                            <td><a href="#" class="view">Click Here To Download Your File</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Organic - ecommerce html template</td>
+                                                            <td>Sep 11, 2018</td>
+                                                            <td>Never</td>
+                                                            <td><a href="#" class="view">Click Here To Download Your File</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="address">
+                                           <p>The following addresses will be used on the checkout page by default.</p>
+                                            <h4 class="billing-address">Billing address</h4>
+                                            <a href="#" class="view">Edit</a>
+                                            <p><strong>Bobby Jackson</strong></p>
+                                            <address>
+                                                House #15<br>
+                                                Road #1<br>
+                                                Block #C <br>
+                                                Banasree <br>
+                                                Dhaka <br>
+                                                1212
+                                            </address>
+                                            <p>Bangladesh</p>   
+                                        </div>
+                                        <div class="tab-pane fade" id="account-details">
+                                            <h3>Личные данные </h3>
+                                            <div class="login">
+                                                <div class="login_form_container">
+                                                    <div class="account_login_form">
+                                                        <form action="#">
+                                                            {% csrf_token %}
+                                                            <br>
+                                                            <label for="{{ form.first_name.auto_id }}" class="col-form-label">{{ form.first_name.label }}</label>
+                                                            <input type="text" name="{{ form.first_name.name }}" placeholder="{{ form.first_name.label }}" value="{{ form.first_name.value }}"  class="form-control customclearablefileinput" id="{{ form.first_name.auto_id }}">
+                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                            <label>Last Name</label>
+                                                            <label for="{{ form.last_name.auto_id }}" class="col-form-label">{{ form.last_name.label }} </label>
+                                                            <input type="text" name="{{ form.last_name.name }}" placeholder="{{ form.last_name.label }}" value="{{ form.last_name.value }}"  class="form-control customclearablefileinput" id="{{ form.last_name.auto_id }}">
+                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                            <label for="{{ form.email.auto_id }}" class="col-form-label">{{ form.email.label }} </label>
+                                                            <input type="text" name="{{ form.email.name }}" placeholder="{{ form.email.label }}" value="{{ form.email.value }}"  class="form-control customclearablefileinput" id="{{ form.email.auto_id }}">
+                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                            <label for="{{ form.telephone.auto_id }}" class="col-form-label">{{ form.telephone.label }} </label>
+                                                            <input type="text" name="{{ form.telephone.name }}" placeholder="{{ form.telephone.label }}" value="{{ form.telephone.value }}"  class="form-control customclearablefileinput" id="{{ form.telephone.auto_id }}">
+                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                            <div class="save_button primary_btn default_button">
+                                                                <a href="#">Save</a>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="organizations-details">
+                                            <h3>Данные организации</h3>
+                                            <div class="login">
+                                                <div class="login_form_container">
+                                                    <div class="account_login_form">
+                                                        <form action="#">
+                                                            {% csrf_token %}
+
+                                                                       <div class="form-group">
+                                                                            <label for="{{ form.name_org.auto_id }}" class="col-form-label">{{ form.name_org.label }}</label>
+                                                                            <input type="text" name="{{ form.name_org.name }}" placeholder="{{ form.name_org.label }}" value="{{ form.name_org.value }}"  class="form-control customclearablefileinput" id="{{ form.name_org.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.name_org.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.name_director.auto_id }}" class="col-form-label">{{ form.name_director.label }} </label>
+                                                                            <input type="text" name="{{ form.name_director.name }}" placeholder="{{ form.name_director.label }}" value="{{ form.name_director.value }}"  class="form-control customclearablefileinput" id="{{ form.name_director.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.email.auto_id }}" class="col-form-label">{{ form.email.label }} </label>
+                                                                            <input type="text" name="{{ form.email.name }}" placeholder="{{ form.email.label }}" value="{{ form.email.value }}"  class="form-control customclearablefileinput" id="{{ form.email.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group" >
+                                                                            <label for="{{ form.telephone.auto_id }}" class="col-form-label">{{ form.telephone.label }} </label>
+                                                                            <input type="text" name="{{ form.telephone.name }}" placeholder="{{ form.telephone.label }}" value="{{ form.telephone.value }}"  class="form-control customclearablefileinput" id="{{ form.telephone.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group" >
+                                                                            <label for="{{ form.ur_address.auto_id }}" class="col-form-label">{{ form.ur_address.label }} </label>
+                                                                            <input type="text" name="{{ form.ur_address.name }}" placeholder="{{ form.ur_address.label }}" value="{{ form.ur_address.value }}"  class="form-control customclearablefileinput" id="{{ form.ur_address.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group" >
+                                                                            <label for="{{ form.fk_address.auto_id }}" class="col-form-label">{{ form.fk_address.label }} </label>
+                                                                            <input type="text" name="{{ form.fk_address.name }}" placeholder="{{ form.fk_address.label }}" value="{{ form.fk_address.value }}"  class="form-control customclearablefileinput" id="{{ form.fk_address.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.inn.auto_id }}" class="col-form-label">{{ form.inn.label }} </label>
+                                                                            <input type="text" name="{{ form.inn.name }}" placeholder="{{ form.inn.label }}" value="{{ form.fk_address.value }}"  class="form-control customclearablefileinput" id="{{ form.inn.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group" >
+                                                                            <label for="{{ form.kpp.auto_id }}" class="col-form-label">{{ form.kpp.label }} </label>
+                                                                            <input type="text" name="{{ form.kpp.name }}" placeholder="{{ form.kpp.label }}" value="{{ form.kpp.value }}"  class="form-control customclearablefileinput" id="{{ form.kpp.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.ogrn.auto_id }}" class="col-form-label">{{ form.ogrn.label }} </label>
+                                                                            <input type="text" name="{{ form.ogrn.name }}" placeholder="{{ form.ogrn.label }}" value="{{ form.ogrn.value }}"  class="form-control customclearablefileinput" id="{{ form.ogrn.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.okpo.auto_id }}" class="col-form-label">{{ form.okpo.label }} </label>
+                                                                            <input type="text" name="{{ form.okpo.name }}" placeholder="{{ form.okpo.label }}" value="{{ form.okpo.value }}"  class="form-control customclearablefileinput" id="{{ form.okpo.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group" >
+                                                                            <label for="{{ form.okvid.auto_id }}" class="col-form-label">{{ form.okvid.label }} </label>
+                                                                            <input type="text" name="{{ form.okvid.name }}" placeholder="{{ form.okvid.label }}" value="{{ form.okvid.value }}"  class="form-control customclearablefileinput" id="{{ form.okvid.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.name_bank.auto_id }}" class="col-form-label">{{ form.name_bank.label }} </label>
+                                                                            <input type="text" name="{{ form.name_bank.name }}" placeholder="{{ form.name_bank.label }}" value="{{ form.name_bank.value }}"  class="form-control customclearablefileinput" id="{{ form.name_bank.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.bic.auto_id }}" class="col-form-label">{{ form.bic.label }} </label>
+                                                                            <input type="text" name="{{ form.bic.name }}" placeholder="{{ form.bic.label }}" value="{{ form.bic.value }}"  class="form-control customclearablefileinput" id="{{ form.bic.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group" >
+                                                                            <label for="{{ form.r_chet.auto_id }}" class="col-form-label">{{ form.r_chet.label }} </label>
+                                                                            <input type="text" name="{{ form.r_chet.name }}" placeholder="{{ form.r_chet.label }}" value="{{ form.r_chet.value }}"  class="form-control customclearablefileinput" id="{{ form.r_chet.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group" >
+                                                                            <label for="{{ form.k_chet.auto_id }}" class="col-form-label">{{ form.k_chet.label }} </label>
+                                                                            <input type="text" name="{{ form.k_chet.name }}" placeholder="{{ form.k_chet.label }}" value="{{ form.k_chet.value }}"  class="form-control customclearablefileinput" id="{{ form.k_chet.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <label for="{{ form.post_address.auto_id }}" class="col-form-label">{{ form.post_address.label }} </label>
+                                                                            <input type="text" name="{{ form.post_address.name }}" placeholder="{{ form.post_address.label }}" value="{{ form.post_address.value }}"  class="form-control customclearablefileinput" id="{{ form.post_address.auto_id }}">
+                                                                            <small id="hint_{{ form.image.auto_id }}" class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                                                         </div>
+
+                                                                <div class="save_button primary_btn default_button">
+                                                                    <a href="#">Save</a>
+                                                                </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       	
+                </section>			
+                <!-- End Maincontent  -->
+
+                <!--Newsletter section start-->
+
+                <!--Newsletter section end -->
+                
+                <!--Footer start-->
+                {% include 'footer/footer.html' %}
+                <!--Footer end-->
+               
+               
+                
+            </div>
+            
+            
+           
+        <!-- all js here -->
+        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+
+    </body>
+</html>

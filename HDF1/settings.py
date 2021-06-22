@@ -37,11 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'crispy_forms',
     'shop',
     'cart',
     'orders',
-    'account',
+    'allauth',
+    'organizations',
+    'allauth.account',
+
+
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +62,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'HDF1.urls'
+
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
 
 TEMPLATES = [
     {
@@ -85,7 +101,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+AUTHENTICATION_BACKEND = (
+    'django.contrib.auth.backends.ModelBackend'
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -119,6 +138,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+# AUTH_USER_MODEL = 'users.CustomUser'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_REDIRECT_URL = '/account/profile'
+
+EMAIL_BACKEND = 'django.core.mail.backends,dummy.EmailBackend'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -134,3 +160,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_ID = 1

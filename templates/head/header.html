@@ -1,3 +1,4 @@
+{#{% load crispy_forms_tags %}#}
 {% block header %}
                 <header>
                     <div class="header_middle">
@@ -91,7 +92,8 @@
                                     <div class="menu d-none d-lg-block ">
                                         <nav>
                                             <ul>
-                                                <li><a href="{% url 'shop:product_list' %}">Главная</a>
+                                                <li><a href="{% url 'shop:product' %}">Главная</a>
+                                                <li><a href="{% url 'shop:product_list' %}">Товары</a>
 
                                                 </li>
                                                 <li><a href="about-us.html">О нас</a></li>
@@ -111,7 +113,23 @@
                                     <div class="header_right_info">
                                         <ul>
                                             <li><a href="wishlist.html">Избранное<span> <i class="zmdi zmdi-favorite-outline"></i> (0) </span></a></li>
-                                            <li> <a href="login.html">Личный кабинет</a></li>
+
+                                            <li>
+                                                {% if user.is_authenticated %}
+                                                    <a href="{% url 'account_logout' %}">Выход</a>
+                                                    <li>
+                                                    <a href="{% url 'account_login' %}"><span>Привет, {{ user.first_name }}</span></a>
+                                                    </li>
+
+
+
+                                                {% else %}
+                                                    <a href="{% url 'account_login' %}">Личный кабинет</a>
+                                                    <li>
+                                                        <a href="{% url 'account_signup' %}">Регистрация</a>
+                                                    </li>
+                                                {% endif %}
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

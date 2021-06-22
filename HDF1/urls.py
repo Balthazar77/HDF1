@@ -20,12 +20,14 @@ from django.urls import path, include
 app_name = 'shop'
 app_name = 'cart'
 app_name = 'orders'
-app_name = 'account'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^cart/', include('cart.urls', namespace='cart')),
     url(r'^', include('shop.urls', namespace='shop')),
     url(r'^orders/', include('orders.urls', namespace='orders')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^', include('organizations.urls'))
+
 
 ]

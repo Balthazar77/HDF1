@@ -1,0 +1,56 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{#{% load crispy_forms_tags %}#}
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% include 'head/head.html' %}
+{% include 'head/header.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+
+
+                <div class="account_area ptb-100">
+                    <div class="container">
+                        <div class="row">
+                           <!--login area start-->
+                            <div class="col-lg-6 col-md-12">
+                                <div class="account_form">
+                                    <div class="login_title">
+                                        <h2>Регистрация</h2>
+                                        <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+                                    </div>
+                                    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                                      {% csrf_token %}
+                                      {{ form.as_p }}
+                                      {% if redirect_field_value %}
+                                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                      {% endif %}
+                                      <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{% include 'footer/footer.html' %}
+                <!--Footer end-->
+
+
+
+            </div>
+
+
+
+        <!-- all js here -->
+        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+
+
+{% endblock %}

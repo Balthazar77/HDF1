@@ -1,0 +1,112 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{#{% load crispy_forms_tags %}#}
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% include 'head/head.html' %}
+    <body>
+          <!-- Add your site or application content here -->
+            
+            <div class="exporso_wrapper">
+              {% include 'head/header.html' %}
+                <!--Breadcrumb section-->
+                <!--Breadcrumb section end-->
+                 <!-- accont area start -->
+                <div class="account_area ptb-100">
+                    <div class="container">
+                        <div class="row">
+                           <!--login area start-->
+                            <div class="col-lg-6 col-md-12">
+                                <div class="account_form">
+                                    <div class="login_title">
+                                        <h2>Авторизация</h2>
+                                    </div>
+                                    <div class="login_form login">
+                                         <form action="{% url 'profile' %}" method="post">
+                                             {% csrf_token %}
+                                            <input type="hidden" name="next" value="{{ next }}">
+                                             {{ form|crispy }}
+                                                <div class="justify-content-center  al-center">
+
+                                                    <div class="btn-group" role="group" aria-label="Basic example" style="padding-top:5px">
+                                                        <button type="submit" value="login" class="btn btn-primary">Войти</button>
+                                                    </div>
+{#                                                    <div class="btn-group" role="group" aria-label="Basic example" style="padding-top:5px">#}
+{#                                                        <a href="{% url 'password_reset' %}" class="btn btn-secondary">Забыли пароль</a>#}
+                                                </div>
+
+                                        </form>
+                                    </div>
+                                 </div>    
+                            </div>
+                            <!--login area start-->
+
+                            <!--register area start-->
+{#                            <div class="col-lg-6 col-md-12">#}
+{#                                <div class="login_title">#}
+{#                                    <h2>Регистрация</h2>#}
+{#                                </div>#}
+{#                                <div class="login_form form_register ">#}
+{#                                    <form method="post">#}
+{#                                        <div class="login_input">#}
+{#                                            <label>Email address <span>*</span></label>#}
+{#                                            <input type="text">#}
+{#                                        </div>#}
+{#                                        <div class="login_input">#}
+{#                                            <label>password <span>*</span></label>#}
+{#                                            <input type="password">#}
+{#                                        </div>#}
+{##}
+{#                                        <div class="login_submit">#}
+{#                                            <button type="submit">Register</button>#}
+{#                                        </div>#}
+{#                                        {% csrf_token %}#}
+{#                                        {% for field in form %}#}
+{#                                           <div class="form-group">#}
+{##}
+{#                                               {{ field.label_tag }}#}
+{#                                              {{ field }}#}
+{#                                            {% if field.help_text %}#}
+{#                                             <small id="{{ field.name }}lHelp" class="form-text text-muted">{{ field.help_text }}</small>#}
+{#                                            {% endif %}#}
+{#                                            {% for error in field.errors %}#}
+{#                                              <p>{{ error }}</p>#}
+{#                                            {% endfor %}#}
+{#                                           </div>#}
+{#                                        {% endfor %}#}
+{#                                         <div class="form-group row">#}
+{#                                             <div class="offset-sm-4 col-sm-10">#}
+{#                                                 <button type="submit" class="btn btn-primary justify-content-center" align="center">Зарегистрироваться</button>#}
+{#                                             </div>#}
+{#                                         </div>#}
+{#                                    </form>#}
+{#                                </div>#}
+{#                            </div>#}
+                            <!--register area end-->
+                        </div>
+                    </div>
+                </div>
+                <!-- accont area end -->
+                
+                <!--Newsletter section start-->
+
+                <!--Newsletter section end -->
+                
+                <!--Footer start-->
+                {% include 'footer/footer.html' %}
+                <!--Footer end-->
+               
+               
+                
+            </div>
+            
+            
+           
+        <!-- all js here -->
+        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
