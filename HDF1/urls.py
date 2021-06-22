@@ -27,7 +27,8 @@ urlpatterns = [
     url(r'^', include('shop.urls', namespace='shop')),
     url(r'^orders/', include('orders.urls', namespace='orders')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^', include('organizations.urls'))
+    url(r'^', include('organizations.urls')),
+    url(r'^contact/', include('contact.urls'))
 
 
 ]
