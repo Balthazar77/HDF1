@@ -5,7 +5,7 @@ from organizations.models import DataUserOrganization
 from .models import Order
 
 
-class OrderCreateForm(ProfileForm):
+class OrderCreateForm(forms.ModelForm):
     class Meta:
         model = DataUserOrganization
         fields = ['name_org', 'name_director', 'inn', 'ur_address', 'post_address']
