@@ -63,11 +63,24 @@
 {#                                            <div class="cart-plus-minus">#}
 {#                                                <input type="text" value="1" name="qtybutton" class="cart-plus-minus-box">#}
 {#                                            </div>#}
+                                            <div class="row">
                                             <form action="{% url "cart:cart_add" product.id %}" method="post" >
-                                                {{ cart_product_form }}
+
+                                                    {{ cart_product_form }}
                                                 {% csrf_token %}
-                                                <input  type="submit" value="Add to cart" >
-                                            </form>
+                                                <input  type="submit" value="Add to cart"style="
+                                                        background: #f6563c none repeat scroll 0 0;
+                                                        border-radius: 3px;
+                                                        color: #ffffff;
+                                                        display: block;
+                                                        font-weight: 600;
+                                                        height: 42px;
+                                                        line-height: 42px;
+                                                        margin: 0 12px;
+                                                        padding: 0 20px;
+                                                        text-transform: uppercase;" >
+                                                </form>
+                                            </div>
                                         </div>
 
 

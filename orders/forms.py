@@ -1,8 +1,11 @@
 from django import forms
+
+from organizations.forms import ProfileForm
+from organizations.models import DataUserOrganization
 from .models import Order
 
 
-class OrderCreateForm(forms.ModelForm):
+class OrderCreateForm(ProfileForm):
     class Meta:
-        model = Order
-        fields = ['first_name', 'last_name', 'email', 'address', 'postal_code', 'city']
+        model = DataUserOrganization
+        fields = ['name_org', 'name_director', 'inn', 'ur_address', 'post_address']
