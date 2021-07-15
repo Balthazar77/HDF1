@@ -49,7 +49,8 @@ class Order(Profile):
                                                      quantity=item['quantity'])
                             # очистка корзины
                     cart.clear()
-                return render(request, 'orders/order/created.html',{'order': order})
+                return render(request, 'orders/order/created.html',
+                              {'order': order})
             else:
                  # # form = self.form_class(initials=self.initials)
                  # return render(self.render_form(form))

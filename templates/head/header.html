@@ -1,5 +1,6 @@
 {#{% load crispy_forms_tags %}#}
 {% block header %}
+
                 <header>
                     <div class="header_middle">
                         <div class="container">
@@ -37,48 +38,39 @@
                                     <div class="mini_cart_box_wrapper text-right">
                                         <a href="#">
                                             <img src="/static/img/icon/cart.png" alt="Mini Cart Icon">
-                                            <span class="cart_count">02</span>
+                                            <span class="cart_count">{{ cart.count }}</span>
                                         </a>
+                                         {% for item in cart %}
+                                                    {% with product=item.product %}
                                         <ul class="mini_cart_box">
                                             <li class="single_product_cart">
                                                 <div class="cart_img">
-                                                    <a href="product-details.html"><img src="/static/img/product/pro_sm_1.png" alt=""></a>
+                                                    <a href="{% url "cart:cart_detail" %}"><img src="{% if product.image %} {{ product.image.url }} {% endif %}" alt=""></a>
                                                 </div>
-                                                <div class="cart_title">
-                                                    <h5><a href="product-details.html"> Soffer Pro x33</a></h5>
-                                                    <h6><a href="#">Black</a></h6>
-                                                    <span>$95.00 x 1</span>
-                                                </div>
+                                                 <div class="cart_title">
+                                                    <h5><a href="product-details.html"> {{ product.name }}</a></h5>
+                                                    <span>${{ item.price }} x {{ item.quantity }}</span>
+                                                 </div>
                                                 <div class="cart_delete">
-                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                                                    <a href="{% url "cart:cart_remove" product.id%}"><i class="zmdi zmdi-delete"></i></a>
                                                 </div>
                                             </li>
-                                            <li class="single_product_cart">
-                                                <div class="cart_img">
-                                                    <a href="product-details.html"><img src="/static/img/product/pro_sm_2.png" alt=""></a>
-                                                </div>
-                                                <div class="cart_title">
-                                                    <h5><a href="product-details.html"> Lotafaj una khdii</a></h5>
-                                                    <h6><a href="#">Black</a></h6>
-                                                    <span>$85.00 x 1</span>
-                                                </div>
-                                                <div class="cart_delete">
-                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                                </div>
-                                            </li>
-
                                             <li class="cart_space">
                                                 <div class="cart_sub">
-                                                    <h4>Subtotal</h4>
+                                                    <h4>СУММА</h4>
                                                 </div>
                                                 <div class="cart_price">
-                                                    <h4>$180.00</h4>
+                                                    <h4>${{ item.total_price }}</h4>
                                                 </div>
                                             </li>
+                                                 {% endwith %}
+                                                 {% endfor %}
                                             <li class="cart_btn_wrapper">
-                                                <a class="cart_btn" href="../cart/cart.html">view cart</a>
-                                                <a class="cart_btn " href="checkout.html">checkout</a>
+                                                <a class="cart_btn" href="{% url "cart:cart_detail" %}">Корзина</a>
+
                                             </li>
+
+
                                         </ul>
                                     </div>
                                 </div>
@@ -143,9 +135,12 @@
                             <div class="col-12">
                                 <div class="breadcrumb_inner">
                                     <ul>
-                                        <li><a href="#">Главная</a></li>
+                                        {% block breadcrumbs %}
+                                        <li><a href="{% url 'shop:product' %}">Главная</a></li>
                                         <li><i class="zmdi zmdi-chevron-right"></i></li>
+
                                         <li>НУЖНО ПРОПИСАТЬ</li>
+                                        {% endblock %}
                                     </ul>
                                 </div>
                             </div>

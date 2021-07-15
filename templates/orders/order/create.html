@@ -99,7 +99,9 @@
                                                 <th><strong> ИТОГОВАЯ СТОИМОСТЬ</strong></th>
                                                 <td><strong><span class="amount">£{{ cart.get_total_price }}</span></strong>
                                                 </td>
+
                                             </tr>
+
                                         </tfoot>
                                     </table>
 
@@ -157,12 +159,28 @@
                                     <h3>Billing Details</h3>
                                     <div class="row">
                                         <div class="col-md-12">
-                                                <form action="." method="post" class="order-form">
+                                                <form action="#" method="post" class="order-form">
                                                     <div class="checkout-form-list">
-                                                        {{ form.as_p }}
+                                                        {% csrf_token %}
+{#                                                       {{ form.as_p }}#}
+
+                                                        <label for="{{ form.name_org.auto_id }}">{{ form.name_org.label }}: </label> <input type="text" name="{{ form.name_org.name }}" value= "{{ form.name_org.value }}" maxlength="170" required="" id="{{ form.name_org.auto_id }}"></p>
+                                                        <p>
+                                                            <label for="id_name_director">{{ form.name_director.label }}: </label>
+                                                            <input type="text" name="name_director" value="{{ form.name_director.value }}" maxlength="170" required="" id="id_name_director">
+                                                        </p>
+                                                        <p>
+                                                            <label for="id_inn">{{ form.inn.label }}:</label>
+                                                            <input type="text" name="inn"  value="{{ organizations.inn }}" maxlength="170" required="" id="id_inn"></p>
+                                                        <p>
+                                                            <label for="id_ur_address">{{ form.ur_address.label }}:</label>
+                                                            <input type="text" name="ur_address" value="{{ form.ur_address.value }}" maxlength="170" id="id_ur_address"></p>
+                                                        <p>
+                                                            <label for="id_post_address">{{ form.post_address.label }}:</label>
+                                                            <input type="text" name="post_address" value="{{ form.post_address.value }}"maxlength="170" id="id_post_address"></p>
                                                     </div>
                                                     <p><input type="submit" value="Place order" style="border-radius: 50px;"></p>
-                                                    {% csrf_token %}
+
                                                 </form>
                                         </div>
                                     </div>

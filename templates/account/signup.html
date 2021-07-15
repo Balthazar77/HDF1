@@ -12,7 +12,28 @@
 {% block content %}
 
 
-                <div class="account_area ptb-100">
+    <head>
+        <style type="text/css">
+            .signup {
+                border: 1px solid #d3ced2;
+                padding: 20px;
+                border-radius: 5px;
+            }
+            .form_singup{
+                display: block;
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                ine-height: 1.5;
+                color: #495057;background-color: #fff;
+                background-image: none;background-clip: padding-box;
+                border: 1px solid #ced4da;border-radius: .25rem;
+                transition: border-color ease-in-out .15s,
+                box-shadow ease-in-out .15s;
+
+            }
+        </style>
+    </head>
+    <div class="account_area ptb-100">
                     <div class="container">
                         <div class="row">
                            <!--login area start-->
@@ -22,13 +43,20 @@
                                         <h2>Регистрация</h2>
                                         <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
                                     </div>
-                                    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-                                      {% csrf_token %}
-                                      {{ form.as_p }}
-                                      {% if redirect_field_value %}
-                                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                                      {% endif %}
-                                      <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+
+                                    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}" style="border: 1px solid #d3ced2;border-radius: 5px;">
+                                             {% csrf_token %}
+
+                                           {{ form.as_p }}
+
+                                            {% if redirect_field_value %}
+                                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+
+
+
+
+                                            {% endif %}
+                                      <button type="submit" class="btn btn-primary">{% trans "Sign Up" %} &raquo;</button>
                                     </form>
                                 </div>
                             </div>
