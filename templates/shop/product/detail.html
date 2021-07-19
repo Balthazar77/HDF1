@@ -1,29 +1,6 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-{% include 'head/head.html' %}
+{% extends 'shop/base.html' %}
     <body>
-          <!-- Add your site or application content here -->
-            
-            <div class="exporso_wrapper">
-                {% include 'head/header.html' %}
-                
-                <!--Breadcrumb section-->
-                <div class="breadcrumb_section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="breadcrumb_inner">
-                                    <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><i class="zmdi zmdi-chevron-right"></i></li>
-                                        <li>{{ product.name }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Breadcrumb section end-->
+        {% block content %}
                 
                 <!--product Details Inner-->
                 <div class="product_details_inner left_sidebar ptb-110">
@@ -146,31 +123,9 @@
                 </div>
                 <!--product Details End-->
                 
-                
-               
-                
-
-
-                <!--Newsletter section end -->
-                
-                <!--Footer start-->
-             {% include 'footer/footer.html' %}
-                <!--Footer end-->
-               
-               
-                
-            </div>
-            
-            
-           
-        <!-- all js here -->
-        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/static/js/popper.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
+        {% endblock %}
     </body>
-</html>
+
 
 
 

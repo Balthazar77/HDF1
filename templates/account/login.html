@@ -1,16 +1,10 @@
+{% extends 'shop/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{#{% load crispy_forms_tags %}#}
-<!doctype html>
-<html class="no-js" lang="zxx">
-{% include 'head/head.html' %}
+
     <body>
-          <!-- Add your site or application content here -->
-            
-            <div class="exporso_wrapper">
-              {% include 'head/header.html' %}
-                <!--Breadcrumb section-->
-                <!--Breadcrumb section end-->
+          {% block content %}
+
                  <!-- accont area start -->
                 <div class="account_area ptb-100">
                     <div class="container">
@@ -22,7 +16,7 @@
                                         <h2>Авторизация</h2>
                                     </div>
                                     <div class="login_form login">
-                                         <form action="{% url 'profile' %}" method="post">
+                                         <form action="{% url 'account_login' %}" method="post">
                                              {% csrf_token %}
                                             <input type="hidden" name="next" value="{{ next }}">
                                              {{ form|crispy }}
@@ -88,25 +82,5 @@
                 </div>
                 <!-- accont area end -->
                 
-                <!--Newsletter section start-->
-
-                <!--Newsletter section end -->
-                
-                <!--Footer start-->
-                {% include 'footer/footer.html' %}
-                <!--Footer end-->
-               
-               
-                
-            </div>
-            
-            
-           
-        <!-- all js here -->
-        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/static/js/popper.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
+          {% endblock %}
     </body>
-</html>

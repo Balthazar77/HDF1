@@ -1,15 +1,6 @@
-{% load static %}
-<!doctype html>
-<html class="no-js" lang="zxx">
-{% include 'head/head.html' %}
+{% extends 'shop/base.html' %}
     <body>
-          <!-- Add your site or application content here -->
-            
-            <div class="exporso_wrapper">
-              {% include 'head/header.html' %}
-                
-
-
+        {% block content %}
                     <!-- PAGE SECTION START -->
                     <div class="cart_page_area pt-100 pb-60">
                        <form action="#">
@@ -84,24 +75,6 @@
                         </form>	
                     </div>
                     <!-- PAGE SECTION END --> 
-                
-
-                
-                <!--Footer start-->
-                {% include 'footer/footer.html' %}
-                <!--Footer end-->
-               
-               
-                
-            </div>
-            
-            
-           
-        <!-- all js here -->
-        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/static/js/popper.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
+        {% endblock %}
     </body>
-</html>
+

@@ -1,14 +1,6 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-    {% include 'head/head.html' %}
+{% extends 'shop/base.html' %}
     <body>
-          <!-- Add your site or application content here -->
-            
-            <div class="exporso_wrapper">
-             {% include 'head/header.html' %}
-                <!--Breadcrumb section-->
-                <!--Breadcrumb section end-->
-                
+        {% block content %}
                 <!-- Start Maincontent  -->
                 <section class="main_content_area my_account ptb-100">
                     <div class="container">
@@ -244,28 +236,9 @@
                         </div>
                     </div>       	
                 </section>			
-                <!-- End Maincontent  -->
 
-                <!--Newsletter section start-->
-
-                <!--Newsletter section end -->
-                
-                <!--Footer start-->
-                {% include 'footer/footer.html' %}
-                <!--Footer end-->
-               
-               
-                
-            </div>
+        {% endblock %}
             
             
-           
-        <!-- all js here -->
-        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/static/js/popper.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
 
     </body>
-</html>

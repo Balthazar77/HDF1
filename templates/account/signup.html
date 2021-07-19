@@ -1,10 +1,6 @@
-{% load static %}
+{% extends 'shop/base.html' %}
 {% load crispy_forms_tags %}
-{#{% load crispy_forms_tags %}#}
-<!doctype html>
-<html class="no-js" lang="zxx">
-{% include 'head/head.html' %}
-{% include 'head/header.html' %}
+
 
 {% load i18n %}
 
@@ -41,6 +37,7 @@
                                 <div class="account_form">
                                     <div class="login_title">
                                         <h2>Регистрация</h2>
+                                    {% csrf_token %}
                                         <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
                                     </div>
 
@@ -62,23 +59,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-{% include 'footer/footer.html' %}
-                <!--Footer end-->
-
-
-
-            </div>
-
-
-
-        <!-- all js here -->
-        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/static/js/popper.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
+    </div>
 
 
 {% endblock %}

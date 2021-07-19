@@ -11,10 +11,13 @@ class Cart(object):
         """
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
-        if not cart:
+        org = self.session.get(settings.AUTHENTICATION_BACKEND)
+        if not cart or org:
             # save an empty cart in the session
             cart = self.session[settings.CART_SESSION_ID] = {}
+            org = self.session[settings.AUTHENTICATION_BACKEND] = {}
         self.cart = cart
+        self.org = org
 
     def add(self, product, quantity=1, update_quantity=False):
         """

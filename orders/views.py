@@ -34,19 +34,22 @@ class Order(Profile):
     form_class = OrderCreateForm
     template_name = 'orders/order/create.html'
 
-    def get(self, request, **kwargs):
+    def order_create(request, **kwargs):
             cart = Cart(request)
+            org = DataUserOrganization(request)
             # orders = DataUserOrganization.objects.filter(account=self.request.user).first()
             if request.method == 'POST':
                 form = OrderCreateForm(request.POST)
                 if form.is_valid():
                     # orders = self.initials
                     order = form.save()
-                    for item in cart:
+                    for item in cart,org:
                             OrderItem.objects.create(order=order,
                                                      product=item['product'],
                                                      price=item['price'],
-                                                     quantity=item['quantity'])
+                                                     quantity=item['quantity'],
+                                                     name_org = item['name_org']
+                                                     )
                             # очистка корзины
                     cart.clear()
                 return render(request, 'orders/order/created.html',
@@ -54,7 +57,7 @@ class Order(Profile):
             else:
                  # # form = self.form_class(initials=self.initials)
                  # return render(self.render_form(form))
-                 form = self.form_class
+                 form = 'orders/order/create.html'
                  return render(request, 'orders/order/create.html',
                                {'cart': cart, 'form': form})
 
@@ -65,3 +68,29 @@ class Order(Profile):
     #     organizations = User.objects.filter(username=self.request.user)
     #     return render(self.request, self.template_name,
     #                       {'form': form, 'DataUserOrganization': organizations})
+
+
+
+ # def order_create(request):
+ #            cart = Cart(request)
+ #            # orders = DataUserOrganization.objects.filter(account=self.request.user).first()
+ #            if request.method == 'POST':
+ #                form = OrderCreateForm(request.POST)
+ #                if form.is_valid():
+ #                    # orders = self.initials
+ #                    order = form.save()
+ #                    for item in cart:
+ #                            OrderItem.objects.create(order=order,
+ #                                                     product=item['product'],
+ #                                                     price=item['price'],
+ #                                                     quantity=item['quantity'])
+ #                            # очистка корзины
+ #                    cart.clear()
+ #                return render(request, 'orders/order/created.html',
+ #                              {'order': order})
+ #            else:
+ #                 # # form = self.form_class(initials=self.initials)
+ #                 # return render(self.render_form(form))
+ #                 form = 'orders/order/create.html'
+ #                 return render(request, 'orders/order/create.html',
+ #                               {'cart': cart, 'form': form})

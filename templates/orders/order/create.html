@@ -1,13 +1,8 @@
-{% load static %}
-<!doctype html>
-<html class="no-js" lang="zxx">
-{% include 'head/head.html' %}
+{% extends 'shop/base.html' %}
     <body>
-          <!-- Add your site or application content here -->
+          {% block content %}
             
-            <div class="exporso_wrapper">
-              {% include 'head/header.html' %}
-                <!--Breadcrumb section end-->
+
 
                 <!-- checkout-area start -->
                 <div class="checkout-area ptb-100">
@@ -60,7 +55,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-12 col-12">
+                        <div class="col-md-12 col-12">
                             <div class="your-order">
                                 <h3>ВАШ ЗАКАЗ</h3>
                                 <div class="your-order-table table-responsive">
@@ -78,12 +73,18 @@
                                                 <tr class="cart_item">
                                                         {% for item in cart %}
 
+
                                                             <td class="product-name">
                                                                <strong> {{ item.product.name }} ({{ item.quantity }}x)</strong>
                                                             </td>
                                                                 <td class="product-total">
-                                                                <span>${{ item.total_price }}</span>
+                                                                <span>${{ item.total_price }} </span>
                                                                 </td>
+                                                            {% for item in org %}
+                                                                <td>
+                                                                    <span>{{ item.name_org }}</span>
+                                                                </td>
+                                                                {% endfor %}
 
                                                             </li>
                                                 </tr>
@@ -149,11 +150,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 col-md-12 col-12">
+                            <div class="col-lg-6 col-md-12 col-12">
                             <form action="#">
                                 <div class="checkbox-form">
                                     <h3>Billing Details</h3>
@@ -163,15 +160,17 @@
                                                     <div class="checkout-form-list">
                                                         {% csrf_token %}
 {#                                                       {{ form.as_p }}#}
-
-                                                        <label for="{{ form.name_org.auto_id }}">{{ form.name_org.label }}: </label> <input type="text" name="{{ form.name_org.name }}" value= "{{ form.name_org.value }}" maxlength="170" required="" id="{{ form.name_org.auto_id }}"></p>
                                                         <p>
-                                                            <label for="id_name_director">{{ form.name_director.label }}: </label>
+                                                            <label for="{{ form.name_org.auto_id }}">{{ form.name_org.label }}: </label>
+                                                            <input type="text" name="{{ form.name_org.name }}" value= "{{ form.name_org.value }}" maxlength="170" required="" id="{{ form.name_org.auto_id }}">
+                                                        </p>
+                                                        <p>
+                                                            <label for="{{ form.name_director.auto_id }}">{{ form.name_director.label }}: </label>
                                                             <input type="text" name="name_director" value="{{ form.name_director.value }}" maxlength="170" required="" id="id_name_director">
                                                         </p>
                                                         <p>
                                                             <label for="id_inn">{{ form.inn.label }}:</label>
-                                                            <input type="text" name="inn"  value="{{ organizations.inn }}" maxlength="170" required="" id="id_inn"></p>
+                                                            <input type="text" name="inn"  value="{{ form.inn.value }}" maxlength="170" required="" id="id_inn"></p>
                                                         <p>
                                                             <label for="id_ur_address">{{ form.ur_address.label }}:</label>
                                                             <input type="text" name="ur_address" value="{{ form.ur_address.value }}" maxlength="170" id="id_ur_address"></p>
@@ -187,29 +186,18 @@
                                 </div>
                             </form>
                         </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
             </div>
-            <!-- checkout-area end -->	
-                <!--Newsletter section start-->
 
-                <!--Newsletter section end -->
-                
-                <!--Footer start-->
-                {% include 'footer/footer.html' %}
-                <!--Footer end-->
-               
-               
-                
-            </div>
-            
+           {% endblock %}
             
            
-        <!-- all js here -->
-        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/static/js/popper.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
+
     </body>
-</html>
+

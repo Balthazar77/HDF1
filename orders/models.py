@@ -1,5 +1,6 @@
 from django.db import models
 from shop.models import Product
+from organizations.models import DataUserOrganization
 
 
 class Order(models.Model):
@@ -27,6 +28,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE, verbose_name='Заказ')
+    organization = models.ManyToManyField(DataUserOrganization)
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE, verbose_name='Продукт')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     quantity = models.PositiveIntegerField(default=1, verbose_name='Количество')

@@ -146,7 +146,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_REDIRECT_URL = '/account/profile'
 
-EMAIL_BACKEND = 'django.core.mail.backends,dummy.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
 
 # Static files (CSS, JavaScript, Images)

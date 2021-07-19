@@ -1,16 +1,10 @@
-{% load static %}
-
-{% include 'head/head.html' %}
+{% extends 'shop/base.html' %}
     <body>
           <!-- Add your site or application content here -->
 
-            <div class="exporso_wrapper">
-               {% include 'head/header.html' %}
-                <!--Breadcrumb section-->
 
-                <!--Breadcrumb section end-->
                 
-                
+            {% block content %}
                 <!--shop area start-->
                 <div class="shop_area ptb-100">
                     <div class="container">
@@ -71,6 +65,17 @@
                                                             <div class="produc_thumb">
                                                                 <a href="{{ product.get_absolute_url }}"><img src="{% if product.image %}{{ product.image.url }}{% endif %}" alt=""></a>
                                                             </div>
+                                                            <div class="product_hover">
+                                                                <div class="product_action">
+                                                                    <a href="{% url "cart:cart_add" product.id %}" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                                                                </div>
+                                                                <div class="product__desc">
+                                                                    <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                                                                    <div class="price_amount">
+                                                                        <span class="current_price">${{ product.price }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                   {% endfor %}
@@ -84,9 +89,9 @@
                                     <div class="col-12">
                                         <div class="pagination">
                                             <ul>
-                                                <li><a href="#"><i class="zmdi zmdi-chevron-left"></i> prev</a></li>
+                                                <li><a href="#"><i class="zmdi zmdi-chevron-left"></i> Пред</a></li>
                                                 <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">next<i class="zmdi zmdi-chevron-right"></i></a></li>
+                                                <li><a href="#">След<i class="zmdi zmdi-chevron-right"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -98,25 +103,11 @@
                     </div>
                 </div>
                 <!--shop area end-->
-                
-                
 
-
-                <!--Newsletter section end -->
-                
-                {% include 'footer/footer.html' %}
-               
-               
-                
-            </div>
             
-            
+            {% endblock %}
            
         <!-- all js here -->
-        <script src="/static/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/static/js/popper.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
+
     </body>
-</html>
+

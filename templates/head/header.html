@@ -84,18 +84,10 @@
                                     <div class="menu d-none d-lg-block ">
                                         <nav>
                                             <ul>
-                                                <li><a href="{% url 'shop:product' %}">Главная</a>
-                                                <li><a href="{% url 'shop:product_list' %}">Товары</a>
+                                                <li><a href="{% url 'shop:product_list' %}">Главная</a>
 
                                                 </li>
-                                                <li><a href="about-us.html">О нас</a></li>
-                                                <li><a href="blog.html">Блог <i class="zmdi zmdi-chevron-down"></i></a>
-                                                    <ul class="sub_menu">
-                                                        <li><a href="blog.html">Blog</a></li>
-                                                        <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                                    </ul>
-                                                </li>
+
                                                 <li><a href="{% url 'about' %}">Контакты </a></li>
                                             </ul>
                                         </nav>
@@ -104,11 +96,12 @@
                                 <div class="col-lg-4 col-12">
                                     <div class="header_right_info">
                                         <ul>
-                                            <li><a href="wishlist.html">Избранное<span> <i class="zmdi zmdi-favorite-outline"></i> (0) </span></a></li>
-
                                             <li>
                                                 {% if user.is_authenticated %}
-                                                    <a href="{% url 'account_logout' %}">Выход</a>
+                                                    <li>
+                                                        <a href="{% url 'account_logout' %}">Выход</a>
+                                                    </li>
+
                                                     <li>
                                                     <a href="{% url 'account_login' %}"><span>Привет, {{ user.first_name }}</span></a>
                                                     </li>
@@ -116,12 +109,15 @@
 
 
                                                 {% else %}
-                                                    <a href="{% url 'account_login' %}">Личный кабинет</a>
+                                                    <li>
+                                                        <a href="{% url 'account_login' %}">Личный кабинет</a>
+                                                        </li>
                                                     <li>
                                                         <a href="{% url 'account_signup' %}">Регистрация</a>
                                                     </li>
                                                 {% endif %}
                                             </li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -129,24 +125,7 @@
                         </div>
                     </div>
                                 <!--Breadcrumb section-->
-                <div class="breadcrumb_section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="breadcrumb_inner">
-                                    <ul>
-                                        {% block breadcrumbs %}
-                                        <li><a href="{% url 'shop:product' %}">Главная</a></li>
-                                        <li><i class="zmdi zmdi-chevron-right"></i></li>
 
-                                        <li>НУЖНО ПРОПИСАТЬ</li>
-                                        {% endblock %}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!--Breadcrumb section end-->
 
                 </header>
